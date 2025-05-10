@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(255) NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     phone_number VARCHAR(255) NOT NULL,
-    role ENUM('guest', 'host', 'admin') NOT NULL
+    role ENUM('guest', 'host', 'admin') NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS properties (
   property_id VARCHAR(255) PRIMARY KEY DEFAULT (UUID()),
   host_id VARCHAR(255) NOT NULL,
   name VARCHAR(255) NOT NULL,
-  description TEXT
+  description TEXT,
   location VARCHAR(255) NOT NULL,
   pricepernight DECIMAL(10, 2) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS bookings (
   end_date DATE NOT NULL,
   total_price DECIMAL(10, 2) NOT NULL,
   status ENUM('pending', 'confirmed', 'canceled') NOT NULL,
-  created_at TIMEsTAMP DEFAULT CURRENT_TIMESTAMP,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
   FOREIGN KEY (property_id) REFERENCES properties(property_id)
 );
@@ -65,6 +65,6 @@ CREATE TABLE IF NOT EXISTS messages (
   message_body TEXT NOT NULL,
   sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-  FOREIGN KEY sender_id REFERENCES users(user_id),
-  FOREIGN KEY recipient_id REFERENCES users(user_id),
+  FOREIGN KEY (sender_id) REFERENCES users(user_id),
+  FOREIGN KEY (recipient_id) REFERENCES users(user_id),
 );
