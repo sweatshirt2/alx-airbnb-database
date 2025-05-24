@@ -15,3 +15,4 @@ SELECT *,
     ORDER BY bookings_count DESC
   ) AS bookings_rank
 FROM properties_bookings;
+-- ROW_NUMBER()
