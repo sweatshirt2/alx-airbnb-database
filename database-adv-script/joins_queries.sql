@@ -1,9 +1,10 @@
 SELECT *
 FROM bookings
-  JOIN users ON bookings.user_id = users.user_id;
+  INNER JOIN users ON bookings.user_id = users.user_id;
 SELECT *
 FROM properties
-  LEFT JOIN reviews ON properties.property_id = reviews.property_id;
+  LEFT JOIN reviews ON properties.property_id = reviews.property_id
+ORDER BY bookings.start_date;
 -- SELECT *
 -- FROM bookings
 --   FULL OUTER JOIN users ON bookings.user_id = users.user_id;
@@ -13,4 +14,5 @@ FROM bookings
 UNION
 SELECT *
 FROM bookings
-  RIGHT JOIN users ON bookings.user_id = users.user_id;
+  RIGHT JOIN users ON bookings.user_id = users.user_id
+ORDER BY bookings.start_date;
